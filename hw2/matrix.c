@@ -46,17 +46,15 @@ void TriangleMatrix()
     for (int i = 0; i < N; i++)
     {
         for (int j = 0; j < N; j++)
-        {
-            int num = 1;
+        { 
             matrix[i][j] = 1;
-            if (i == 0 & j < 2)
-            { 
-                matrix[i][j] = 0;
-            }           
-            if (i == 1 & j == 0)
-            {
-                matrix[i][j] = 0;
-            }
+        }
+            for (int j = 0; j < N - i - 1; j++)
+        {
+            matrix[i][j] = 0;
+        }
+        for (int j = 0; j < N; j++)
+        {
             printf("%d ", matrix[i][j]);
         }
         printf("\n");
@@ -67,6 +65,42 @@ void TriangleMatrix()
 }
 
 
+void MatrixUlitka()
+{
+    int N = 5;
+    int matrix[N][N];
+    int num = 1;    
+    
+    
+    for (int i = 0; i < N/2; i++)
+    {
+        for (int j = i; j < N - i; j++)
+            matrix[i][j] = num++;
+
+        for (int j = i + 1; j < N - i; j++)
+            matrix[j][N - 1 - i] = num++;
+        
+        for (int j = N - 2 - i; j >= i; j--) 
+            matrix[N - 1 - i][j] = num++;
+        
+        for (int j = N - 2 - i; j > i; j--)
+            matrix[j][i] = num++;
+    }
+    matrix[N/2][N/2] = N*N;    
+ 
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+                printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    } 
+
+}
+
+
+
 int main()
 {
     PrintMatrix();
@@ -75,6 +109,7 @@ int main()
     printf("\n");
     printf("\n");
     TriangleMatrix();
-
+    printf("\n");
+    MatrixUlitka();
     return 0;
 }
