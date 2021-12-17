@@ -11,7 +11,7 @@ int main()
 	{
 		printf("%d byte of a = %x\n", i, *ptr); 
 		if (i == 2)
-			*ptr = 16;
+			*ptr = 8;
 		ptr++;
 	}
 
