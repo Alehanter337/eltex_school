@@ -11,9 +11,9 @@ typedef enum
 int main()
 {
 	int choose;
-	int a;
-	int b;
-	int result;
+	int c;
+	int d;
+	int *result;
 	void *library_handler;
 
 	printf("Choose operation: \n1.Plus\n2.Minus\n3.Multiply\n4.Division\n5.End\n");
@@ -38,10 +38,10 @@ int main()
 			{
 				printf("-Plus operation-\n");
 				printf("Send me first number: ");
-				scanf("%d", &a);				
+				scanf("%d", &c);				
 				printf("Send me second number: ");
-				scanf("%d", &b);
-				result = (*plus)(&a, &b);
+				scanf("%d", &d);
+				result = (*plus)(c, d);
 				printf("Result = %d \n", result);
 				break;
 			}
@@ -50,10 +50,10 @@ int main()
 			{
 				printf("-Minus operation-\n");
 				printf("Send me first number: ");
-				scanf("%d", &a);
+				scanf("%d", &c);
 				printf("Send me second number: ");
-				scanf("%d", &b);
-				result = (*minus)(&a, &b);
+				scanf("%d", &d);
+				result = (*minus)(c, d);
 				printf("Result = %d \n", result);
 				break;
 			}
@@ -62,11 +62,11 @@ int main()
 			{
 				printf("-Multiply operation-\n");
 				printf("Send me first number: ");
-				scanf("%d", &a);
+				scanf("%d", &c);
 				printf("Send me second number: ");
-				scanf("%d", &b);
-				result = (*multiply)(&a, &b);
-				printf("Result = %d\n", result);
+				scanf("%d", &d);
+				*result = (*multiply)(c, d);
+				printf("Result = %d\n", &result);
 				break;
 			}
 
@@ -74,11 +74,11 @@ int main()
 			{
 				printf("-Division operation-\n");
 				printf("Send me first number: ");
-				scanf("%d", &a);
+				scanf("%d", &c);
 				printf("Send me second number: ");
-				scanf("%d", &b);
-				result = (*div)(&a, &b);
-				printf("Result= %d \n", result);
+				scanf("%d", &d);
+				result = (*div)(c, d);
+				printf("Result= %d\n", result);
 				break;
 			}
 
