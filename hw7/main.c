@@ -2,26 +2,20 @@
 #include <dlfcn.h>
 
 
-typedef enum
-{
-    false,
-    true
-} bool;
-
 int main()
 {
 	int choose;
 	int c;
 	int d;
-	int *result;
+	int result;
 	void *library_handler;
 
 	printf("Choose operation: \n1.Plus\n2.Minus\n3.Multiply\n4.Division\n5.End\n");
 
 	library_handler = dlopen("/home/eltex/eltex_school/hw7/libcalc.so", RTLD_LAZY);
 	
-
-	int (*plus)(int *a, int *b) = dlsym(library_handler, "plus");
+	int * plus(int *a, int *b) = dlsym(library_handler, "plus");
+	//int *plus(int a, int b) = dlsym(library_handler, "plus");
 	int (*minus)(int *a, int *b) = dlsym(library_handler, "minus");
 	int (*div)(int *a, int *b) = dlsym(library_handler, "div");
 	int (*multiply)(int *a, int *b) = dlsym(library_handler, "multiply");
@@ -41,7 +35,7 @@ int main()
 				scanf("%d", &c);				
 				printf("Send me second number: ");
 				scanf("%d", &d);
-				result = (*plus)(c, d);
+				result = *plus(c, d);
 				printf("Result = %d \n", result);
 				break;
 			}
@@ -65,8 +59,8 @@ int main()
 				scanf("%d", &c);
 				printf("Send me second number: ");
 				scanf("%d", &d);
-				*result = (*multiply)(c, d);
-				printf("Result = %d\n", &result);
+				result = (*multiply)(c, d);
+				printf("Result = %d\n", result);
 				break;
 			}
 
