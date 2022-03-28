@@ -15,7 +15,6 @@ int main()
 	strncpy(server.sun_path, SOCKET_PATH, sizeof(server.sun_path) - 1);
 
 	int fd = socket(AF_LOCAL, SOCK_STREAM, 0);
-
 	if (fd == -1)
 	{
 		perror("ERROR: Socket fd failed");
@@ -35,20 +34,22 @@ int main()
 	if (listen(fd, 5) == -1)
 	{
 		perror("ERROR: listen failed");
-		//exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	
 	int new_fd = accept(fd, NULL, NULL);
 	if (new_fd == -1)
 	{
 		perror("ERROR: new fd failed");
-		//exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 
 	while(1)
 	{
 		recv(new_fd, buf, size, 0);
+		printf("recv %s\n", buf);
 		send(new_fd, buf, size, 0);
+		printf("send %s\n", buf);
 	}
 	close(new_fd);
 	close(fd);

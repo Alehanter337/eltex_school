@@ -37,10 +37,11 @@ int main()
 		perror("ERROR: new fd failed");
 		exit(EXIT_FAILURE);
 	}
-
-	send(fd, buf, size, 0);
+	
+	send(fd, "hello", size, 0);
+	printf("send\n");
 	recv(fd, buf, size, 0);
-
+	printf("recv %s\n", buf);
 	close(fd);
 	return 0;
 }
